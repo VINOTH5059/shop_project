@@ -1,0 +1,30 @@
+{% extends 'shop/layouts/base.html' %}
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4>Product</h4>
+                <hr style="border-color:#b8bfc2;">
+            </div>
+            {% for item in products %}
+            <div class="col-md-4 col-lg-3">
+                <a href="{% url 'product_details' item.slug %}" style="text-decoration: none; color: inherit;">
+                    <div class="card my-3">
+                        <img src="{{ item.Product_image.url }}" class="card-img-top image-height" alt="{{ item.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">{{ item.name }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <p class="card-text">
+                                <span class="float-start old-price">Rs: {{ item.original_price }}</span>
+                                <span class="float-end new-price">Rs: {{ item.selling_price }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
